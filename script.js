@@ -63,5 +63,25 @@ window.addEventListener('load', () => {
         createTulips(3);
         createTulips(4);
         createTulips(5);
-    }, 2000); // 2 second delay
+    }, 0); // 2 second delay
+});
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Unix timestamp (in seconds) to count down to
+    var toDayFromNow = (new Date("Dec 31, 2024 23:59:59").getTime() / 1000);
+    var toDayFrom = (new Date("Oct 20, 2023 23:59:59").getTime() / 1000) + (3600 / 60 / 60 / 24) - 1;
+    
+    console.log(toDayFrom);
+    console.log(toDayFromNow);
+
+    // Set Up FlipDown
+    var flipdown = new FlipDown(toDayFrom)
+    
+    // Start The Count Down
+    .start()
+    // Do Something When The Countdown Ends
+    .ifEnded(() => {
+        document.querySelector(".flipdown").innerHTML = `<h2>Timer is ended</h2>`;
+    });
 });

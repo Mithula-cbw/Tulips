@@ -1,5 +1,12 @@
 :root{
     --bg-color:#FFC7D4;
+    --timer-height: 100px;
+    --timer-width: 50%;
+    --white-400:white;
+    --white-300:rgba(255, 255, 255, 0.75);
+    --white-200:rgba(255, 255, 255, 0.5);;
+    --white-100:rgba(255, 255, 255, 0.25);
+    --border-radius:80px;
 }
 
 *{
@@ -96,7 +103,6 @@ body{
 }
 
 
-
 .tulip-1{
     position: absolute;
     width: 100px;
@@ -110,7 +116,7 @@ body{
     position: absolute;
     width: 100px;
     height: auto;
-    animation: grow 3s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+    animation: grow2 3s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
     transform-origin: bottom center;
 }
 
@@ -142,7 +148,7 @@ body{
     position: absolute;
     width: 100px;
     height: auto;
-    animation: grow 3.8 cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+    animation: grow 3.8s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
     transform-origin: bottom center;
 }
 
@@ -159,13 +165,45 @@ body{
     height: auto;
 }
 
+.timer {
+    position: absolute;
+    padding: 10px 10px 20px 10px;
+    min-height: var(--timer-height);
+    min-width: var(--timer-width);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centering the timer */
+    background-color: var(--white-300);
+    z-index: 40;
+    border-radius: var(--border-radius);
+    display: flex; /* Use flexbox */
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items horizontally */
+    justify-content: center; /* Center items vertically */
+}
+
+.count-down {
+    z-index: 50;
+    transform: scale(0.8);
+    width: 100%;
+   
+}
+
+.flipdown{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
 
 
-@keyframes grow {
-    0% {
-        transform: translateY(10px) rotate3d(0, 1, 0, 80deg) scale(0.6); /* Rotating on the Y axis */
-    }
-    100% {
-        transform: translateY(0) rotate3d(0, 1, 0, 0deg) scale(1); /* End with no rotation */
+@media (max-width: 600px) {
+    :root {
+        --timer-height: 80px; /* Reduced height */
+        --timer-width: 90%;   /* Increased width for mobile */
+        --border-radius: 50px; /* Smaller border radius for compact design */
     }
 }
+
+

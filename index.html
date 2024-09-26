@@ -1,45 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>R&M - seconds</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>R&M - Countdown Timer</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Open+Sans&display=swap" rel="stylesheet">
+
+    <!-- Style FlipUp -->
+    <link href="flipUp.css" rel="stylesheet" />
+
+    <!-- Font Awesome -->
+    <link href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" rel="stylesheet" />
+    
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <canvas id="confetti"></canvas>
-  <div class="containers">
-    <div class="container-outer" id="container-outer-1">
-      <div class="container" id="container-1">
     
-      </div>
-    </div>
-    <div class="container-outer" id="container-outer-2">
-      <div class="container" id="container-2">
-    
-      </div>
-    </div>
-    <div class="container-outer" id="container-outer-3">
-      <div class="container" id="container-3">
-    
-      </div>
-    </div>
-    <div class="container-outer" id="container-outer-4">
-      <div class="container" id="container-4">
-    
-      </div>
-    </div>
-    <div class="container-outer" id="container-outer-5">
-      <div class="container" id="container-5">
-    
-      </div>
-    </div>
-  </div>
 
-  <div class="menu-btn" id="menu-btn">
+    <div class="timer">
+        <div class="count-down">
+          <div class="flipdown" id="flipdown"></div>
+      </div>
+    </div>
+    <div class="containers">
+        <div class="container-outer" id="container-outer-1">
+            <div class="container" id="container-1"></div>
+        </div>
+        <div class="container-outer" id="container-outer-2">
+            <div class="container" id="container-2"></div>
+        </div>
+        <div class="container-outer" id="container-outer-3">
+            <div class="container" id="container-3"></div>
+        </div>
+        <div class="container-outer" id="container-outer-4">
+            <div class="container" id="container-4"></div>
+        </div>
+        <div class="container-outer" id="container-outer-5">
+            <div class="container" id="container-5"></div>
+        </div>
+    </div>
 
-  </div>
+    <div class="menu-btn" id="menu-btn"></div>
 
-  <script src="script.js"></script>
+    <!-- Scripts -->
+    <script src="flipUp.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

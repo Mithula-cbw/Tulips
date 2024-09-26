@@ -3,6 +3,10 @@ function createTulips(containerIndex) {
     const containerWidth = container.offsetWidth;
     const containerHeight = container.offsetHeight;
 
+    // Array to hold the preloaded images
+    const preloadedImages = [];
+    const totalTulipImages = 5; // Adjust based on the number of tulip images you have
+
     // Helper function to load an image
     function loadImage(src) {
         return new Promise((resolve, reject) => {
@@ -13,21 +17,29 @@ function createTulips(containerIndex) {
         });
     }
 
-    // Generate and load all tulips
-    for (let i = 0; i < 100; i++) {
-        const tulipClassID = Math.floor(Math.random() * 7) + 1;
-        const tulipImgID = Math.floor(Math.random() * 5) + 1;
+    // Preload images
+    const preloadPromises = [];
+    for (let i = 1; i <= totalTulipImages; i++) {
+        preloadPromises.push(loadImage(`${i}.png`).then((img) => {
+            preloadedImages[i - 1] = img; // Store the loaded image in the array
+        }));
+    }
 
-        // Load the image and append it once loaded
-        loadImage(`${tulipImgID}.png`).then((tulipImg) => {
+    // Wait for all images to preload before creating tulips
+    Promise.all(preloadPromises).then(() => {
+        // Generate and append tulips
+        for (let i = 0; i < 100; i++) {
+            const tulipClassID = Math.floor(Math.random() * 7) + 1;
+            const tulipImgID = Math.floor(Math.random() * totalTulipImages);
+
             // Create the tulip container
             const tulip = document.createElement('div');
             tulip.classList.add(`tulip-${tulipClassID}`);
-            tulipImg.alt = `tulip-${i + 1}`;
-            tulipImg.classList.add('tulip-img');
+            preloadedImages[tulipImgID].alt = `tulip-${i + 1}`;
+            preloadedImages[tulipImgID].classList.add('tulip-img');
 
-            // Append the image to the tulip div
-            tulip.appendChild(tulipImg);
+            // Append the preloaded image to the tulip div
+            tulip.appendChild(preloadedImages[tulipImgID].cloneNode()); // Clone to avoid issues
 
             // Randomly position the tulip inside the container
             const randomX = Math.random() * (containerWidth + 50); // 50 is the tulip width
@@ -38,10 +50,10 @@ function createTulips(containerIndex) {
 
             // Append the tulip to the container
             container.appendChild(tulip);
-        }).catch((error) => {
-            console.error(error);
-        });
-    }
+        }
+    }).catch((error) => {
+        console.error(error);
+    });
 }
 
 window.addEventListener('load', () => {
@@ -53,4 +65,3 @@ window.addEventListener('load', () => {
         createTulips(5);
     }, 2000); // 2 second delay
 });
-

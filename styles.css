@@ -48,22 +48,22 @@ body{
 
 
 #container-outer-1{
-    top: 10%;
+    top: 0;
     z-index: 1;
 }
 
 #container-outer-2{
-    top: 25%;
+    top: 10%;
     z-index: 2;
 }
 
 #container-outer-3{
-    top:38%;
+    top:25%;
     z-index: 3;
 }
 
 #container-outer-4{
-    top: 50%;
+    top: 40%;
     z-index: 4;
 }
 
@@ -163,7 +163,7 @@ body{
 
 @keyframes grow {
     0% {
-        transform: translateY(10px) rotate3d(0, 1, 0, 80deg) scale(0.3); /* Rotating on the Y axis */
+        transform: translateY(10px) rotate3d(0, 1, 0, 80deg) scale(0.6); /* Rotating on the Y axis */
     }
     100% {
         transform: translateY(0) rotate3d(0, 1, 0, 0deg) scale(1); /* End with no rotation */

@@ -126,17 +126,18 @@ class FlipDown {
     _init() {
       this.initialised = true;
   
-      this.yearsCount = Math.floor((this.now - this.epoch) / SECONDS_IN_AN_AVERAGE_YEAR).toString.length;
-
-
-      var yearRotorCount = this.yearsCount <= 0 ? 0 : this.yearsCount;
-     
+      this.yearsCount = Math.floor((this.now - this.epoch) / SECONDS_IN_AN_AVERAGE_YEAR);
+      
+      this.yearCountLength = Math.floor((this.now - this.epoch) / SECONDS_IN_AN_AVERAGE_YEAR).toString().length;
+      
+      var yearRotorCount = this.yearsCount === 0 ? 0 : this.yearCountLength;
+      
       this.daysremaining = Math.floor(
        (( this.now - this.epoch) - this.yearsCount*SECONDS_IN_AN_AVERAGE_YEAR) / SECONDS_IN_A_DAY
       ).toString().length;
       
       var dayRotorCount = this.daysremaining <= 2 ? 2 : this.daysremaining;
-  
+
       // Create and store rotors
       for (var i = 0; i < yearRotorCount + dayRotorCount + 6; i++) {
         this.rotors.push(this._createRotor(0));
@@ -145,9 +146,12 @@ class FlipDown {
       var rotorGroupCount = 0;
       var isYearPresent = false;
 
+      
+      
       if(yearRotorCount > 0){
         rotorGroupCount = 1;
         isYearPresent = true;
+
         // Create year rotor group
       var yearRotors = [];
       for (var i = 0; i < yearRotorCount; i++) {
@@ -155,7 +159,7 @@ class FlipDown {
       }
       this.element.appendChild(this._createRotorGroup(yearRotors, 0, isYearPresent));
       }
-  
+
       // Create day rotor group
       var dayRotors = [];
       for (var i = 0; i < dayRotorCount; i++) {
@@ -165,11 +169,12 @@ class FlipDown {
       
 
       // Create other rotor groups
-      var count = dayRotorCount;
+      var count = dayRotorCount + yearRotorCount;
+      console.log(`Count:${count}`);
       for (var i = 0; i < 3; i++) {
         var otherRotors = [];
         for (var j = 0; j < 2; j++) {
-          otherRotors.push(this.rotors[count]);
+          otherRotors.push(this.rotors[count]); 
           count++;
         }
         this.element.appendChild(this._createRotorGroup(otherRotors, i + rotorGroupCount + 1, isYearPresent));
@@ -281,18 +286,26 @@ class FlipDown {
       this.clockStrings.h = pad(this.clockValues.h, 2);
       this.clockStrings.m = pad(this.clockValues.m, 2);
       this.clockStrings.s = pad(this.clockValues.s, 2);
-      
-    //   console.log(`days:${this.clockValues.s}`);
-  
-      // Concat clock value strings
+     if(this.clockStrings.y == 0){
+      // Concat clock value strings when year is present
       this.clockValuesAsString = (
+        this.clockStrings.d +
+        this.clockStrings.h +
+        this.clockStrings.m +
+        this.clockStrings.s
+      ).split("");
+     }else{
+      // Concat clock value strings when year is absent
+      this.clockValuesAsString = (        
         this.clockStrings.y +
         this.clockStrings.d +
         this.clockStrings.h +
         this.clockStrings.m +
         this.clockStrings.s
       ).split("");
-  
+     }
+      
+      console.log(`days:${this.clockValuesAsString}`);
       // Update rotor values
       // Note that the faces which are initially visible are:
       // - rotorLeafFront (top half of current rotor)

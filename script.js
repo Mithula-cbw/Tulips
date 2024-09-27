@@ -70,10 +70,10 @@ window.addEventListener('load', () => {
 document.addEventListener('DOMContentLoaded', () => {
     // Unix timestamp (in seconds) to count down to
     var toDayFromNow = (new Date("Dec 31, 2024 23:59:59").getTime() / 1000);
-    var toDayFrom = (new Date("Jan 20, 2024 23:59:59").getTime() / 1000) + (3600 / 60 / 60 / 24) - 1;
+    var toDayFrom = (new Date("Sep 30, 2020 00:00:01").getTime() / 1000) + (3600 / 60 / 60 / 24) - 1;
     
     console.log(toDayFrom);
-    console.log(toDayFromNow);
+    // console.log(toDayFromNow);
 
     // Set Up FlipDown
     var flipdown = new FlipDown(toDayFrom)

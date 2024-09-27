@@ -185,7 +185,7 @@ body{
 .count-down {
     z-index: 50;
     transform: scale(0.8);
-    width: 100%;
+    width: 800px;
    
 }
 

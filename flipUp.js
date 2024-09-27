@@ -156,13 +156,14 @@ class FlipDown {
       var yearRotors = [];
       for (var i = 0; i < yearRotorCount; i++) {
         yearRotors.push(this.rotors[i]);
+        console.log(this.rotors[i]);
       }
       this.element.appendChild(this._createRotorGroup(yearRotors, 0, isYearPresent));
       }
 
       // Create day rotor group
       var dayRotors = [];
-      for (var i = 0; i < dayRotorCount; i++) {
+      for (var i = 0 + yearRotorCount; i < dayRotorCount + yearRotorCount; i++) {
         dayRotors.push(this.rotors[i]);
       }
       this.element.appendChild(this._createRotorGroup(dayRotors, rotorGroupCount, isYearPresent));

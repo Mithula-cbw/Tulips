@@ -70,7 +70,7 @@
   
   .flipdown {
     overflow: visible;
-    width: 510px;
+    width: 800px;
     height: 110px;
   }
   
@@ -106,25 +106,31 @@
   .flipdown .rotor-group:nth-child(4) .rotor-group-heading:before {
     content: attr(data-before);
   }
-  
-  .flipdown .rotor-group:nth-child(n+2):nth-child(-n+3):before {
-    content: '';
-    position: absolute;
-    bottom: 20px;
-    left: 115px;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
+
+  .flipdown .rotor-group:nth-child(5) .rotor-group-heading:before {
+    content: attr(data-before);
   }
   
-  .flipdown .rotor-group:nth-child(n+2):nth-child(-n+3):after {
-    content: '';
-    position: absolute;
-    bottom: 50px;
-    left: 115px;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
+  .flipdown .rotor-group:nth-last-child(2):before, 
+  .flipdown .rotor-group:nth-last-child(3):before {
+      content: '';
+      position: absolute;
+      bottom: 20px;
+      left: 115px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+  }
+  
+  .flipdown .rotor-group:nth-last-child(2):after, 
+  .flipdown .rotor-group:nth-last-child(3):after {
+      content: '';
+      position: absolute;
+      bottom: 50px;
+      left: 115px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
   }
   
   .flipdown .rotor {

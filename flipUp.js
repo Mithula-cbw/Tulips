@@ -4,6 +4,7 @@ const SECONDS_IN_A_MINUTE = 60;
 const SECONDS_IN_AN_HOUR = SECONDS_IN_A_MINUTE * 60;
 const SECONDS_IN_A_DAY = SECONDS_IN_AN_HOUR * 24;
 const SECONDS_IN_AN_AVERAGE_YEAR = SECONDS_IN_A_DAY * 365;
+var isYearPresent = false;
 
 
 class FlipDown {
@@ -122,8 +123,35 @@ class FlipDown {
       // Apply theme
       this.element.classList.add(`flipdown__theme-${this.opts.theme}`);
     }
-
+    
+   
     _init() {
+      const flipdownElement = document.querySelector(".flipdown");
+    if (flipdownElement) {
+        flipdownElement.innerHTML = ''; // Clear the previous countdown
+    }
+      this.rotors = [];
+      this.rotorLeafFront = [];
+      this.rotorLeafRear = [];
+      this.rotorTops = [];
+      this.rotorBottoms = [];
+  
+      // Interval
+      this.countdown = null;
+  
+      // Number of days remaining
+      this.daysRemaining = 0;
+  
+      // Clock values as numbers
+      this.clockValues = {};
+  
+      // Clock values as strings
+      this.clockStrings = {};
+  
+      // Clock values as array
+      this.clockValuesAsString = [];
+      this.prevClockValuesAsString = [];
+  
       this.initialised = true;
 
       this.yearsCount = Math.floor((this.now - this.epoch) / SECONDS_IN_AN_AVERAGE_YEAR);
@@ -143,10 +171,7 @@ class FlipDown {
         this.rotors.push(this._createRotor(0));
       }
 
-      var rotorGroupCount = 0;
-      var isYearPresent = false;
-
-      
+      var rotorGroupCount = 0;      
       
       if(yearRotorCount > 0){
         rotorGroupCount = 1;
@@ -156,7 +181,7 @@ class FlipDown {
       var yearRotors = [];
       for (var i = 0; i < yearRotorCount; i++) {
         yearRotors.push(this.rotors[i]);
-        console.log(this.rotors[i]);
+        // console.log(this.rotors[i]);
       }
       this.element.appendChild(this._createRotorGroup(yearRotors, 0, isYearPresent));
       }
@@ -171,7 +196,7 @@ class FlipDown {
 
       // Create other rotor groups
       var count = dayRotorCount + yearRotorCount;
-      console.log(`Count:${count}`);
+      // console.log(`Count:${count}`);
       for (var i = 0; i < 3; i++) {
         var otherRotors = [];
         for (var j = 0; j < 2; j++) {
@@ -249,6 +274,15 @@ class FlipDown {
   
 
     _tick() {
+     
+      var isYearPresentNow = (Math.floor((this.now - this.epoch) / SECONDS_IN_AN_AVERAGE_YEAR) > 0) ? true : false;
+      
+      if(isYearPresent !== isYearPresentNow){
+        console.log("now you got years!")
+        isYearPresent=!isYearPresent;
+        this._init();
+      }
+
       // Get time now
       this.now = this._getTime() - SECONDS_IN_A_DAY;
       

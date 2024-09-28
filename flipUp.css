@@ -219,7 +219,7 @@
 }
 
 /* Mobile Styles */
-/* @media (max-width: 780px) {
+ @media (max-width: 780px) {
 
     .flipdown {
         width: 312px;
@@ -310,4 +310,4 @@
     .flipdown .rotor:after {
         height: 25px;
     }
-} */
+}

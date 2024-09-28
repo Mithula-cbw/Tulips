@@ -222,11 +222,13 @@
  @media (max-width: 780px) {
 
     .flipdown {
-        width: 312px;
-        height: 70px;
+        width: fit-content;
+        height: fit-content;
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        transform: scale(1.1);
+        gap :10px;
     }
 
     
@@ -246,7 +248,7 @@
     }
 
     .flipdown .rotor-group {
-        padding-right: 20px;
+       padding-right: 20px;
     }
 
     .flipdown .rotor-group:last-child {
@@ -262,35 +264,47 @@
     .flipdown .rotor-group:nth-last-child(2):before,
     .flipdown .rotor-group:nth-last-child(2):after {
         left: 69px;
+        background-color: transparent !important;
     }
 
     .flipdown .rotor-group:nth-last-child(2):before {
         bottom: 13px;
         height: 8px;
         width: 8px;
+        background-color: transparent !important;
     }
 
     .flipdown .rotor-group:nth-last-child(2):after {
         bottom: 29px;
         height: 8px;
         width: 8px;
+        background-color: transparent !important;
     }
+    
 
     .flipdown .rotor-group:nth-last-child(3):before,
     .flipdown .rotor-group:nth-last-child(3):after {
         left: 69px;
+        background-color: transparent !important;
+    
     }
 
     .flipdown .rotor-group:nth-last-child(3):before {
         bottom: 13px;
         height: 8px;
         width: 8px;
+        
+        background-color: transparent !important;
+    
     }
 
     .flipdown .rotor-group:nth-last-child(3):after {
         bottom: 29px;
         height: 8px;
         width: 8px;
+        
+        background-color: transparent !important;
+    
     }
 
     .flipdown .rotor-leaf-front,

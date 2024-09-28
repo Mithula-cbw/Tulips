@@ -170,17 +170,17 @@ body{
  position: absolute;
  display: grid;
  place-content: center;
- z-index: 90;
- background-color: transparent;
+ z-index: 90;  
 }
 
 .timer {
+    position: absolute;
     background-color: var(--white-300);
     width: fit-content;
+    top: 50%;
+    left: 50%;
     border-radius: 80px;
     padding: 20px 10px 40px 10px;
-    top: 50%;              /* Move the element halfway down the screen */
-    left: 50%;             /* Move the element halfway across the screen */
     transform: translate(-50%, -50%); 
 }
 
@@ -191,5 +191,36 @@ body{
    
 }
 
+@media (max-width: 780px) {
 
+    .timer {
+        position: absolute;
+        background-color: var(--white-300);
+        height: fit-content;
+        width: fit-content;
+        top: 50%;
+        left: 50%;
+        padding: 80px 40px 80px 60px;
+        transform: translate(-50%, -50%); 
+    }
+    
+    
+    .count-down {
+        z-index: 50;
+        width: 100%;
+       
+    }
+
+}
+
+
+
+@keyframes grow {
+    0% {
+        transform: translateY(10px) scale(0.3); /* Rotating on the Y axis */
+    }
+    100% {
+        transform: translateY(0) scale(1); /* End with no rotation */
+    }
+}
 

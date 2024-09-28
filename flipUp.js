@@ -276,11 +276,20 @@ class FlipDown {
     _tick() {
      
       var isYearPresentNow = (Math.floor((this.now - this.epoch) / SECONDS_IN_AN_AVERAGE_YEAR) > 0) ? true : false;
-      
-      if(isYearPresent !== isYearPresentNow){
-        console.log("now you got years!")
-        isYearPresent=!isYearPresent;
-        this._init();
+      var daysremainingNow = Math.floor(
+        (( this.now - this.epoch) - this.yearsCount*SECONDS_IN_AN_AVERAGE_YEAR) / SECONDS_IN_A_DAY
+       ).toString().length;
+       var dayRotorCount = this.daysremaining <= 2 ? 2 : this.daysremaining; 
+      var dayRotorCountNow = daysremainingNow <= 2 ? 2 : daysremainingNow;
+      // Check if the year presence status has changed
+      if (this.isYearPresent !== isYearPresentNow || dayRotorCount !== dayRotorCountNow) {
+          console.log("Year presence status changed!");
+          
+          // Update the isYearPresent flag
+          this.isYearPresent = isYearPresentNow;
+          
+          // Reinitialize only if the status has changed
+          this._init();
       }
 
       // Get time now

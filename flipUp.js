@@ -3,7 +3,7 @@
 const SECONDS_IN_A_MINUTE = 60;
 const SECONDS_IN_AN_HOUR = SECONDS_IN_A_MINUTE * 60;
 const SECONDS_IN_A_DAY = SECONDS_IN_AN_HOUR * 24;
-const SECONDS_IN_AN_AVERAGE_YEAR = SECONDS_IN_A_DAY * 365.2425;
+const SECONDS_IN_AN_AVERAGE_YEAR = SECONDS_IN_A_DAY * 365;
 
 
 class FlipDown {
@@ -28,7 +28,7 @@ class FlipDown {
       this.initialised = false;
   
       // Time at instantiation in seconds
-      this.now = this._getTime();
+      this.now = this._getTime() - SECONDS_IN_A_DAY;
   
       // UTS to count down to
       this.epoch = uts;
@@ -125,7 +125,7 @@ class FlipDown {
 
     _init() {
       this.initialised = true;
-  
+
       this.yearsCount = Math.floor((this.now - this.epoch) / SECONDS_IN_AN_AVERAGE_YEAR);
       
       this.yearCountLength = Math.floor((this.now - this.epoch) / SECONDS_IN_AN_AVERAGE_YEAR).toString().length;
@@ -250,7 +250,7 @@ class FlipDown {
 
     _tick() {
       // Get time now
-      this.now = this._getTime();
+      this.now = this._getTime() - SECONDS_IN_A_DAY;
       
      
       // Between now and epoch

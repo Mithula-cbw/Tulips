@@ -35,6 +35,7 @@ function createTulips(containerIndex) {
             // Create the tulip container
             const tulip = document.createElement('div');
             tulip.classList.add(`tulip-${tulipClassID}`);
+            tulip.classList.add('tulip');
             preloadedImages[tulipImgID].alt = `tulip-${i + 1}`;
             preloadedImages[tulipImgID].classList.add('tulip-img');
 
@@ -51,38 +52,36 @@ function createTulips(containerIndex) {
             // Append the tulip to the container
             container.appendChild(tulip);
         }
+
+        // Once tulips are created, add the show class after 2 seconds
+        setTimeout(() => {
+            const tulips = document.querySelectorAll('.tulip');
+            console.log(`tulip count: ${tulips.length}`); // Should match the number of tulips created
+            tulips.forEach((tulip) => {
+                tulip.classList.add('show');
+            });
+        }, 2000);
     }).catch((error) => {
         console.error(error);
     });
 }
 
-window.addEventListener('load', () => {
-    setTimeout(() => {
-        createTulips(1);
-        createTulips(2);
-        createTulips(3);
-        createTulips(4);
-        createTulips(5);
-    }, 0); // 2 second delay
+window.addEventListener('DOMContentLoaded', () => {
+    // Ensure tulips are created after the DOM is loaded
+    createTulips(1);
+    createTulips(2);
+    createTulips(3);
+    createTulips(4);
+    createTulips(5);
 });
 
-
-document.addEventListener('DOMContentLoaded', () => {
-    // Unix timestamp (in seconds) to count down to
-    var toDayFromNow = (new Date("Dec 31, 2024 23:59:59").getTime() / 1000);
-    var toDayFrom = (new Date("jun 20, 2023 13:06:00").getTime() / 1000) + (3600 / 60 / 60 / 24) - 1;
+// Countdown initialization
+window.addEventListener('DOMContentLoaded', () => {
+    const toDayFromNow = (new Date("Dec 31, 2024 23:59:59").getTime() / 1000);
+    const toDayFrom = (new Date("Jun 20, 2023 13:06:00").getTime() / 1000) + (3600 / 60 / 60 / 24) - 1;
     
     console.log(toDayFrom);
-    // console.log(toDayFromNow);
 
-    // Set Up FlipDown
-    var flipdown = new FlipDown(toDayFrom)
-    
-    // Start The Count Down
-    .start()
-    // Do Something When The Countdown Ends
-    .ifEnded(() => {
-        document.querySelector(".flipdown").innerHTML = `<h2>Timer is ended</h2>`;
-    });
+    // Initialize FlipDown countdown
+    const flipdown = new FlipDown(toDayFrom).start();
 });
-
